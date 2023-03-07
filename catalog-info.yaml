@@ -1,0 +1,31 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "cmis-document-service"
+  description: "CMIS Document Service"
+  annotations:
+    gitlab.com/project-slug: abhi1/abhi-api1
+    backstage.io/techdocs-ref: dir:.
+    jenkins.io/job-full-name: app-dev/backoffice/Picture%20Perfects/cmis-document-service
+    sonarqube.org/project-key: default/com.estes.ws.cmis.document:cmis-document-service
+spec:
+  type: service
+  lifecycle: production
+  owner: hub
+  environments:
+    - type: Development
+      name: dev
+      argocd/app-name: cmis-document-service
+      vault/secret-path: applications/dev/cmis-document-service
+    - type: Test
+      name: qa
+      argocd/app-name: cmis-document-service
+      vault/secret-path: applications/qa/cmis-document-service
+    - type: UAT
+      name: uat
+      argocd/app-name: cmis-document-service
+      vault/secret-path: applications/uat/cmis-document-service
+    - type: Production
+      name: prod
+      argocd/app-name: cmis-document-service
+      vault/secret-path: applications/prod/cmis-document-service
